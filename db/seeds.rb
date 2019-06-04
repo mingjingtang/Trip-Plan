@@ -5,3 +5,26 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+User.destroy_all
+Trip.destroy_all
+
+user1 = User.create({
+    name: "Mingjing",
+    email: "mingjing@gmail.com",
+    password: "1234567",
+})
+
+Trip1 = Trip.create({
+    name: "Summer fun",
+    category: "Advantures",
+    region: "Pennsylvania",
+    user_id: user1.id
+})
+
+trip2 = Trip.create({
+    name: "Road trip",
+    category: "Relax",
+    region: "Florida",
+    user_id: user1.id
+})

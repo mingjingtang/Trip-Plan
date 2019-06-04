@@ -1,8 +1,11 @@
 class PlacesController < ApplicationController
-    def index 
-        # render plain:"welcome to trip plan"
-        render :index
-        # render json: {hello: "world"}
+    before_action :get_trip, only:[:show]
+    def index
+        @trips = Trip.all
+        # render :index
     end
 
+    def show
+        @trip = Trip.find(params[:id])
+    end
 end

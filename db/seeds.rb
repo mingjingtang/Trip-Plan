@@ -15,7 +15,7 @@ user1 = User.create({
     password: "1234567",
 })
 
-Trip1 = Trip.create({
+trip1 = Trip.create({
     name: "Summer fun",
     category: "Advantures",
     region: "Pennsylvania",
@@ -28,3 +28,16 @@ trip2 = Trip.create({
     region: "Florida",
     user_id: user1.id
 })
+
+place1 = Place.create({
+    name: "pocono",
+    region: "Pennsylvania",
+})
+
+place2 = Place.create({
+    name: "orlando",
+    region: "Florida",
+})
+
+trip1.places << Place.find_by(name: "pocono")
+trip2.places << Place.find_by(name: "orlando")

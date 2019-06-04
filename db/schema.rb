@@ -10,23 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_04_133833) do
+ActiveRecord::Schema.define(version: 2019_06_04_040859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "likes", force: :cascade do |t|
-    t.string "trip_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "likes_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "like_id", null: false
-    t.index ["like_id", "user_id"], name: "index_likes_users_on_like_id_and_user_id"
-    t.index ["user_id", "like_id"], name: "index_likes_users_on_user_id_and_like_id"
-  end
 
   create_table "trips", force: :cascade do |t|
     t.string "name"

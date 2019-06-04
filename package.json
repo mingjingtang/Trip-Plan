@@ -1,5 +1,7 @@
 {
   "name": "trip_plan_app",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "pg": "^7.11.0"
+  }
 }

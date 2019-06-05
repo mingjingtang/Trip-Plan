@@ -44,7 +44,7 @@ class TripsController < ApplicationController
     end
     
 
-    private
+      private
       def trip_params
         params.require(:trip).permit(:name, :category, :region, :user_id)
       end

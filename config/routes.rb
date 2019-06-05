@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # resource :restaurant
 
   root to: 'root#index'
-  resources :places, only: [:index]
+  # resources :places, only: [:index]
   # resources :trips
   resources :users
 
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   scope '/users/:user_id/trips/:trip_id/' do 
-    resources :places, only: [:show]
+    resources :places
   end
 
 end

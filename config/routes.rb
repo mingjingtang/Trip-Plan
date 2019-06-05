@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  # get "/places", to: "places#index"
+  
   # resource :restaurant
 
   root to: 'root#index'
@@ -15,5 +15,9 @@ Rails.application.routes.draw do
   scope '/users/:user_id/trips/:trip_id/' do 
     resources :places
   end
+
+  get "/places", to: "places#index"
+
+  
 
 end

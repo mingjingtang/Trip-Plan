@@ -14,13 +14,13 @@ class App extends Component {
   componentDidMount = async () => {
     const places = await axios.get('http://localhost:4567/places');
     console.log(places)
-    const apiDataLoaded = true;
-    this.setState({places,apiDataLoaded});
+    // const apiDataLoaded = true;
+    this.setState({placesData:places,apiDataLoaded:true});
   }
 
   
   showPlacesOnPage() {
-    return this.state.placesData.map((place) => {
+    return this.state.placesData.data.map((place) => {
       return (
         <div>
           <h1>

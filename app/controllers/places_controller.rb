@@ -1,11 +1,14 @@
 class PlacesController < ApplicationController
-    before_action :get_trip, only:[:show]
     def index
-        @trips = Trip.all
-        # render :index
+        @user = User.find(params[:user_id])
+        @trips = @user.trips
+        @trip = @trips.find(params[:trip_id])
+        @places = @trip.places
+        render json: @places, status: :ok
     end
 
     def show
-        @trip = Trip.find(params[:id])
-    end
+        @place = Place.find(params[:id])
+        render json: @place, status: :ok
+    end 
 end

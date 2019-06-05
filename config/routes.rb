@@ -4,6 +4,16 @@ Rails.application.routes.draw do
   # resource :restaurant
 
   root to: 'root#index'
-  resources :places
-  resources :restaurants
+  # resources :places, only: [:index]
+  # resources :trips
+  resources :users
+
+  scope '/users/:user_id' do
+    resources :trips
+  end
+
+  scope '/users/:user_id/trips/:trip_id/' do 
+    resources :places
+  end
+
 end

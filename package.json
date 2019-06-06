@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "pg": "^7.11.0",
+    "reactjs-popup": "^1.4.1",
     "semantic-ui-css": "^2.4.1"
   }
 }

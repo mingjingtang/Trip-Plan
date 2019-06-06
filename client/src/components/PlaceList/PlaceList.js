@@ -7,7 +7,7 @@ class PlaceList extends Component{
     render(){
         let renderPlaces = this.props.places ? this.props.places.map((place, index) => {
             return <PlaceItem
-                handleOnClick = {this.props.handleOnClick} 
+                onClick1 = {this.props.onClick1} 
                 key = {index}
                 placeImage = {place.image}
                 placeName = {place.name}

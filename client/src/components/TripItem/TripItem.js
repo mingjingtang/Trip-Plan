@@ -13,10 +13,10 @@ class TripItem extends Component{
                     <br></br>
                 </div>
 
-                {/* <button className="button is-rounded"
-                        onClick = {(e) => this.props.handleOnClick2(this.props.id)}>
+                <button className="button is-rounded"
+                        onClick = {(e) => this.props.onClick2(this.props.id)}>
                         Delete
-                </button> */}
+                </button>
             </div>
         )
     }

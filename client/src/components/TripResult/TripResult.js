@@ -9,7 +9,7 @@ class TripResult extends Component{
             <div className = "myFavoriteBooks">
                 <TripList 
                     trips = {this.props.trips}
-                    // handleOnClick2 = {this.props.handleOnClick2}
+                    onClick2 = {this.props.onClick2}
                 />
             </div>
         )

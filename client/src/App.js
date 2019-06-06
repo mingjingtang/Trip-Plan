@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Route, Link, Redirect} from 'react-router-dom';
-import Places from './components/PlaceResult/PlaceResult'
-import Trip from './components/TripResult/TripResult'
+import PlaceResult from './components/PlaceResult/PlaceResult'
+import TripResult from './components/TripResult/TripResult'
 import axios from 'axios'
 import './App.css';
 import { Menu, Segment } from 'semantic-ui-react'
@@ -15,8 +15,8 @@ class App extends Component {
     this.state = {
       placesData: null,
       apiDataLoaded: false,
-      activeItem: 'home',
 
+      // activeItem: 'home',
       places:[],
       trips: []
     };
@@ -25,23 +25,21 @@ class App extends Component {
   componentDidMount = async () => {
     const places = await axios.get('http://localhost:4567/places');
     console.log(places)
-    this.setState({ placesData: places, apiDataLoaded: true });
+    this.setState({ placesData: places.data, apiDataLoaded: true });
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  // handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = async(e, newPlace) => {
+    console.log('this component is clicked')
 
-  showPlacesOnPage() {
-    return this.state.placesData.data.map((place) => {
-      return (
-        <div>
-          <h1>
-            <img src = {place.image} style={{width: '10em', height: '6em'}}/>
-            {place.name}<br></br>
-            {place.region}
-          </h1>
-        </div>
-      );
-    });
+    await this.setState(prevState => ({
+      trips: [...prevState.trips,newPlace],
+    }))
+    // await this.setState({
+    //   activeItem: newPlace
+    // })
+
+    console.log(this.state.trips)
   }
 
 
@@ -52,35 +50,47 @@ class App extends Component {
     return (
       <div>
         <Menu pointing secondary>
-          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
-          <Link to="/Place>Result" >
+          <Menu.Item name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick} />
+          <Link to="/PlaceResult" >
               <Menu.Item
                 name='Places'
-                active={activeItem === 'Places'}
-                onClick={this.handleItemClick}
+                // active={activeItem === 'Places'}
+                // onClick={this.handleItemClick}
               />
           </Link>
           
           <Menu.Item
             name='Your Trips'
-            active={activeItem === 'Your Trips'}
+            // active={activeItem === 'Your Trips'}
             onClick={this.handleItemClick}
           />
           <Menu.Menu position='right'>
             <Menu.Item
               name='login'
-              active={activeItem === 'login'}
+              // active={activeItem === 'login'}
               onClick={this.handleItemClick}
             />
           </Menu.Menu>
         </Menu>
 
 
+        <main>
+          <Route 
+            exact path = "/PlaceResult"
+            render={()=><PlaceResult
+              places = {this.state.placesData}
+              onClick={this.handleItemClick}
+              // onClick2={this.handleItemClick2}
+            />}
+          />
+        </main>
+
+
         <Card.Group itemsPerRow={3}>
           <Card>
             <Image src='/images/avatar/large/daniel.jpg' wrapped ui={false} />
             <Card.Content>
-              <div>{(this.state.apiDataLoaded) ? this.showPlacesOnPage() : <p>Loading...</p>}</div>
+              {/* <div>{(this.state.apiDataLoaded) ? this.showPlacesOnPage() : <p>Loading...</p>}</div> */}
               
               <Card.Header>Daniel</Card.Header>
               <Card.Meta>Joined in 2016</Card.Meta>

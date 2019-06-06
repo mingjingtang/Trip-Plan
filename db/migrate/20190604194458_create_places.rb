@@ -3,6 +3,7 @@ class CreatePlaces < ActiveRecord::Migration[5.2]
     create_table :places do |t|
       t.string :name
       t.string :region
+      t.string :image
 
       t.timestamps
     end

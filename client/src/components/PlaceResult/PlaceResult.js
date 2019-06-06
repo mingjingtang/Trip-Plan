@@ -4,7 +4,7 @@ import '../PlaceResult/PlaceResult.css';
 
 class PlaceResult extends Component{
     render(){
-        console.log(this.props.places)
+        // console.log(this.props.places)
         return(
             <div className = "result">
                 <div className = "placeResult">

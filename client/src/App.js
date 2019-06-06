@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Route, Link, Redirect} from 'react-router-dom';
+import {Route, Link, Switch, Redirect} from 'react-router-dom';
 import PlaceResult from './components/PlaceResult/PlaceResult'
 import TripResult from './components/TripResult/TripResult'
 import axios from 'axios'
@@ -16,16 +16,23 @@ class App extends Component {
       placesData: null,
       apiDataLoaded: false,
 
+      tripsData: null,
+      apiDataLoadedTrips: false,
+
       // activeItem: 'home',
-      places:[],
-      trips: []
     };
   }
 
   componentDidMount = async () => {
+    //get places data
     const places = await axios.get('http://localhost:4567/places');
     console.log(places)
     this.setState({ placesData: places.data, apiDataLoaded: true });
+
+    //get trips data
+    const trips = await axios.get('http://localhost:4567/users/1/trips');
+    console.log(trips)
+    this.setState({ tripsData: trips.data, apiDataLoadedTrips: true });
   }
 
   // handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -33,15 +40,17 @@ class App extends Component {
     console.log('this component is clicked')
 
     await this.setState(prevState => ({
-      trips: [...prevState.trips,newPlace],
+      trips: [...prevState.tripsData,newPlace],
     }))
 
     // await this.setState({
     //   activeItem: newPlace
     // })
 
-    console.log(this.state.trips)
+    console.log(this.state.tripsData)
   }
+
+
 
 
   render() {
@@ -55,17 +64,22 @@ class App extends Component {
             
           <Link to="/PlaceResult">
           <Menu.Item 
-                name='Places' 
-                // active={activeItem === 'Places'}
-                // onClick={this.handleItemClick}
+              name='Places' 
+              // active={activeItem === 'Places'}
+              // onClick={this.handleItemClick}
               />
-            </Link>
+          </Link>
               
+
+          <Link to="/TripResult">
           <Menu.Item
             name='Your Trips'
-            // active={activeItem === 'Your Trips'}
-            onClick={this.handleItemClick}
+              // active={activeItem === 'Your Trips'}
+              // onClick={this.handleItemClick}
           />
+          </Link>
+
+
           <Menu.Menu position='right'>
             <Menu.Item
               name='login'
@@ -77,14 +91,24 @@ class App extends Component {
 
 
         <main>
+          <Switch> 
           <Route 
-            exact path = "/PlaceResult"
+            exact path = "/placeresult"
             render={()=><PlaceResult
               places = {this.state.placesData}
               onClick={this.handleItemClick}
               // onClick2={this.handleItemClick2}
             />}
           />
+
+          <Route
+            path = "/tripresult"
+            render={()=><TripResult
+              trips = {this.state.tripsData}
+              // onClick2={this.handleItemClick2}
+            />}
+          />
+          </Switch>
         </main>
       </div>
     );

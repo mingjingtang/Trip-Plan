@@ -30,6 +30,7 @@ class App extends Component {
       return (
         <div>
           <h1>
+            <img src = {place.image} style={{width: '10em', height: '6em'}}/>
             {place.name}<br></br>
             {place.region}
           </h1>

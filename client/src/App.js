@@ -129,15 +129,14 @@ class App extends Component {
           />
 
           <Route
-            path = "/"
-            render={()=><Home
+            exact path = "/login"
+            render={()=><Login
             />}
           />
 
-
           <Route
-            path = "/login"
-            render={()=><Login
+            path = "/"
+            render={()=><Home
             />}
           />
           </Switch>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import './App.css';
+import { Menu, Segment} from 'semantic-ui-react'
 
 class App extends Component {
   constructor() {
@@ -8,6 +9,7 @@ class App extends Component {
     this.state = {
       placesData: null,
       apiDataLoaded: false,
+      activeItem: 'home'
     };
   }
 
@@ -24,7 +26,7 @@ class App extends Component {
       return (
         <div>
           <h1>
-            {place.name}
+            {place.name}<br></br>
             {place.region}
           </h1>
         </div>
@@ -33,10 +35,16 @@ class App extends Component {
   }
 
   render() {
+    // const { activeItem } = this.state
     return (
-      <div className="App">
-        <div>
-          {(this.state.apiDataLoaded) ? this.showPlacesOnPage() : <p>Loading...</p>}
+      <div>
+        <div className="ui pointing secondary menu">
+          <a className="active item">Home</a><a className="item">Messages</a>
+          <a className="item">Friends</a>
+          <div className="right menu"><a className="item">Logout</a></div>
+        </div>
+        <div className="ui segment">
+          <img src="/images/wireframe/media-paragraph.png" />
         </div>
       </div>
     );

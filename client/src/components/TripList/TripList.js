@@ -6,7 +6,7 @@ class TripList extends Component{
     render(){
         let renderTrips = this.props.trips? this.props.trips.map((trip, index) => {
             return <TripItem  
-                // handleOnClick2 = {this.props.handleOnClick2}
+                onClick2 = {this.props.onClick2}
                 key = {index}
                 id = {index}
                 tripName = {trip.name}

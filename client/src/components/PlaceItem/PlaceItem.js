@@ -23,28 +23,11 @@ class PlaceItem extends Component {
                         </Card.Description>
                         </Card.Content>
                     <Card.Content extra>
-                        <button onClick={(e) => (this.props.handleOnClick(newTrip))}>
+                        <button onClick={(e) => (this.props.onClick1(newTrip))}>
                             Add to my trip
                         </button>
                     </Card.Content>
                 </Card>
-
-
-                {/* <div>
-                    <div>
-                        <img src={this.props.placeImage} alt="" />
-                    </div>
-                    <div>
-                        <p>name: {this.props.placeName}</p>
-                        <p>region: {this.props.placeRegion}</p>
-                    </div>
-                </div>
-
-
-                <button className="button is-danger is-rounded"
-                    onClick={(e) => (this.props.handleOnClick(newTrip))}>
-                    Add to my trip list
-                </button> */}
             </div>
         )
     }

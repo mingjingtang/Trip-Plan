@@ -10,7 +10,7 @@ class PlaceResult extends Component{
                 <div className = "placeResult">
                     <PlaceList 
                         places={this.props.places}
-                        handleOnClick = {this.props.handleOnClick}
+                        onClick1 = {this.props.onClick1}
                     />
                 </div>
             </div>

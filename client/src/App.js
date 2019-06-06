@@ -19,7 +19,7 @@ class App extends Component {
       tripsData: null,
       apiDataLoadedTrips: false,
 
-      // activeItem: 'home',
+      activeItem: 'home',
     };
   }
 
@@ -35,22 +35,32 @@ class App extends Component {
     this.setState({ tripsData: trips.data, apiDataLoadedTrips: true });
   }
 
-  // handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-  handleItemClick = async(e, newPlace) => {
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+
+  handleItemClick1 = async(newPlace) => {
     console.log('this component is clicked')
 
     await this.setState(prevState => ({
-      trips: [...prevState.tripsData,newPlace],
+      tripsData: [...prevState.tripsData,newPlace],
     }))
-
-    // await this.setState({
-    //   activeItem: newPlace
-    // })
 
     console.log(this.state.tripsData)
   }
 
-
+  handleItemClick2 = async (id) => {
+    console.log('this is the id i am going to delete ' + id)
+    const {tripsData} = this.state
+    console.log('trip before splice' + this.state.tripsData)
+    tripsData.splice(id, 1);
+    console.log('trip after splice ' + this.state.tripsData)
+    
+    await this.setState(prevState => ({
+        favoriteBooks: this.state.tripsData.filter(b=>{
+            return b.isTrip === true
+        })
+    }))
+  }
 
 
   render() {
@@ -65,8 +75,8 @@ class App extends Component {
           <Link to="/PlaceResult">
           <Menu.Item 
               name='Places' 
-              // active={activeItem === 'Places'}
-              // onClick={this.handleItemClick}
+              active={activeItem === 'Places'}
+              onClick={this.handleItemClick}
               />
           </Link>
               
@@ -74,8 +84,8 @@ class App extends Component {
           <Link to="/TripResult">
           <Menu.Item
             name='Your Trips'
-              // active={activeItem === 'Your Trips'}
-              // onClick={this.handleItemClick}
+              active={activeItem === 'Your Trips'}
+              onClick={this.handleItemClick}
           />
           </Link>
 
@@ -83,7 +93,7 @@ class App extends Component {
           <Menu.Menu position='right'>
             <Menu.Item
               name='login'
-              // active={activeItem === 'login'}
+              active={activeItem === 'login'}
               onClick={this.handleItemClick}
             />
           </Menu.Menu>
@@ -96,8 +106,8 @@ class App extends Component {
             exact path = "/placeresult"
             render={()=><PlaceResult
               places = {this.state.placesData}
-              onClick={this.handleItemClick}
-              // onClick2={this.handleItemClick2}
+              onClick1={this.handleItemClick1}
+              onClick2={this.handleItemClick2}
             />}
           />
 
@@ -105,7 +115,7 @@ class App extends Component {
             path = "/tripresult"
             render={()=><TripResult
               trips = {this.state.tripsData}
-              // onClick2={this.handleItemClick2}
+              onClick2={this.handleItemClick2}
             />}
           />
           </Switch>

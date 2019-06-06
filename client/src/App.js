@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import './App.css';
+import { Menu, Segment } from 'semantic-ui-react'
+import { Card, Icon, Image } from 'semantic-ui-react'
+
+
 
 class App extends Component {
   constructor() {
@@ -8,23 +12,25 @@ class App extends Component {
     this.state = {
       placesData: null,
       apiDataLoaded: false,
+      activeItem: 'home'
     };
   }
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   componentDidMount = async () => {
     const places = await axios.get('http://localhost:4567/places');
     console.log(places)
-    // const apiDataLoaded = true;
-    this.setState({placesData:places,apiDataLoaded:true});
+    this.setState({ placesData: places, apiDataLoaded: true });
   }
 
-  
+
   showPlacesOnPage() {
     return this.state.placesData.data.map((place) => {
       return (
         <div>
           <h1>
-            {place.name}
+            {place.name}<br></br>
             {place.region}
           </h1>
         </div>
@@ -32,12 +38,66 @@ class App extends Component {
     });
   }
 
+
   render() {
+    const { activeItem } = this.state
+    const src = '/images/wireframe/image.png'
+
     return (
-      <div className="App">
-        <div>
-          {(this.state.apiDataLoaded) ? this.showPlacesOnPage() : <p>Loading...</p>}
-        </div>
+      <div>
+        <Menu pointing secondary>
+          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+          <Menu.Item
+            name='messages'
+            active={activeItem === 'messages'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            name='friends'
+            active={activeItem === 'friends'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Menu position='right'>
+            <Menu.Item
+              name='logout'
+              active={activeItem === 'logout'}
+              onClick={this.handleItemClick}
+            />
+          </Menu.Menu>
+        </Menu>
+
+
+        <Card.Group itemsPerRow={5}>
+          <Card>
+            <Image src='/images/avatar/large/daniel.jpg' wrapped ui={false} />
+            <Card.Content>
+              <div>{(this.state.apiDataLoaded) ? this.showPlacesOnPage() : <p>Loading...</p>}</div>
+              
+              <Card.Header>Daniel</Card.Header>
+              <Card.Meta>Joined in 2016</Card.Meta>
+              <Card.Description>
+                Daniel is a comedian living in Nashville.
+             </Card.Description>
+             </Card.Content>
+              <Card.Content extra>
+              <button>
+                  Add to my trip
+              </button>
+          </Card.Content>
+          </Card>
+          <Card raised image={src} />
+          <Card raised image={src} />
+          <Card raised image={src} />
+          <Card raised image={src} />
+          <Card raised image={src} />
+          <Card raised image={src} />
+          <Card raised image={src} />
+          <Card raised image={src} />
+          <Card raised image={src} />
+        </Card.Group>
+
+       
+
       </div>
     );
   }

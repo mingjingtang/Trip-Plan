@@ -11,14 +11,8 @@ class PlacesController < ApplicationController
             @places = Place.all
             render json: @places, status: :ok
         end    
-
-
-  
     end
-    def getAll
-        @places = Place.all
-        render json: @places, status: :ok
-    end
+    
     def show
         @place = Place.find(params[:id])
         render json: @place, status: :ok

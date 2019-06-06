@@ -30,6 +30,7 @@ class App extends Component {
       return (
         <div>
           <h1>
+            <img src = {place.image} style={{width: '10em', height: '6em'}}/>
             {place.name}<br></br>
             {place.region}
           </h1>
@@ -48,26 +49,26 @@ class App extends Component {
         <Menu pointing secondary>
           <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
           <Menu.Item
-            name='messages'
-            active={activeItem === 'messages'}
+            name='Places'
+            active={activeItem === 'Places'}
             onClick={this.handleItemClick}
           />
           <Menu.Item
-            name='friends'
-            active={activeItem === 'friends'}
+            name='Your Trips'
+            active={activeItem === 'Your Trips'}
             onClick={this.handleItemClick}
           />
           <Menu.Menu position='right'>
             <Menu.Item
-              name='logout'
-              active={activeItem === 'logout'}
+              name='login'
+              active={activeItem === 'login'}
               onClick={this.handleItemClick}
             />
           </Menu.Menu>
         </Menu>
 
 
-        <Card.Group itemsPerRow={5}>
+        <Card.Group itemsPerRow={3}>
           <Card>
             <Image src='/images/avatar/large/daniel.jpg' wrapped ui={false} />
             <Card.Content>
@@ -90,13 +91,7 @@ class App extends Component {
           <Card raised image={src} />
           <Card raised image={src} />
           <Card raised image={src} />
-          <Card raised image={src} />
-          <Card raised image={src} />
-          <Card raised image={src} />
-          <Card raised image={src} />
         </Card.Group>
-
-       
 
       </div>
     );

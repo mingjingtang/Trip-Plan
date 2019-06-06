@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import {Route, Link, Switch, Redirect} from 'react-router-dom';
 import PlaceResult from './components/PlaceResult/PlaceResult'
 import TripResult from './components/TripResult/TripResult'
+import Home from './components/Home/Home'
+import Login from './components/Login/Login'
 import axios from 'axios'
 import './App.css';
-import { Menu, Segment } from 'semantic-ui-react'
-import { Card, Icon, Image } from 'semantic-ui-react'
-
+import { Menu, Segment,Card, Icon, Image } from 'semantic-ui-react'
 
 
 class App extends Component {
@@ -38,6 +38,7 @@ class App extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
 
+
   handleItemClick1 = async(newPlace) => {
     console.log('this component is clicked')
 
@@ -47,6 +48,7 @@ class App extends Component {
 
     console.log(this.state.tripsData)
   }
+
 
   handleItemClick2 = async (id) => {
     console.log('this is the id i am going to delete ' + id)
@@ -65,12 +67,16 @@ class App extends Component {
 
   render() {
     const { activeItem } = this.state
-    const src = '/images/wireframe/image.png'
 
     return (
       <div>
         <Menu pointing secondary>
-          <Menu.Item name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick} />
+          <Link to="/">
+          <Menu.Item 
+            name='Home' 
+            active={activeItem === 'Home'} 
+            onClick={this.handleItemClick} />
+          </Link>
             
           <Link to="/PlaceResult">
           <Menu.Item 
@@ -91,11 +97,13 @@ class App extends Component {
 
 
           <Menu.Menu position='right'>
+          <Link to="Login">
             <Menu.Item
               name='login'
               active={activeItem === 'login'}
               onClick={this.handleItemClick}
             />
+            </Link>
           </Menu.Menu>
         </Menu>
 
@@ -106,6 +114,7 @@ class App extends Component {
             exact path = "/placeresult"
             render={()=><PlaceResult
               places = {this.state.placesData}
+              trips = {this.state.tripsData}
               onClick1={this.handleItemClick1}
               onClick2={this.handleItemClick2}
             />}
@@ -116,6 +125,19 @@ class App extends Component {
             render={()=><TripResult
               trips = {this.state.tripsData}
               onClick2={this.handleItemClick2}
+            />}
+          />
+
+          <Route
+            path = "/"
+            render={()=><Home
+            />}
+          />
+
+
+          <Route
+            path = "/login"
+            render={()=><Login
             />}
           />
           </Switch>

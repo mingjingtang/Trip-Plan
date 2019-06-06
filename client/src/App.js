@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {Route, Link, Redirect} from 'react-router-dom';
+import Places from './components/PlaceResult/PlaceResult'
+import Trip from './components/TripResult/TripResult'
 import axios from 'axios'
 import './App.css';
 import { Menu, Segment } from 'semantic-ui-react'
@@ -12,11 +15,12 @@ class App extends Component {
     this.state = {
       placesData: null,
       apiDataLoaded: false,
-      activeItem: 'home'
+      activeItem: 'home',
+
+      places:[],
+      trips: []
     };
   }
-
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   componentDidMount = async () => {
     const places = await axios.get('http://localhost:4567/places');
@@ -24,6 +28,7 @@ class App extends Component {
     this.setState({ placesData: places, apiDataLoaded: true });
   }
 
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   showPlacesOnPage() {
     return this.state.placesData.data.map((place) => {
@@ -48,11 +53,14 @@ class App extends Component {
       <div>
         <Menu pointing secondary>
           <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
-          <Menu.Item
-            name='Places'
-            active={activeItem === 'Places'}
-            onClick={this.handleItemClick}
-          />
+          <Link to="/Place>Result" >
+              <Menu.Item
+                name='Places'
+                active={activeItem === 'Places'}
+                onClick={this.handleItemClick}
+              />
+          </Link>
+          
           <Menu.Item
             name='Your Trips'
             active={activeItem === 'Your Trips'}

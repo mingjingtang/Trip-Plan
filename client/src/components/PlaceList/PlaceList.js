@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PlaceItem from '../PlaceItem/PlaceItem'
+import { Card } from 'semantic-ui-react';
+
 
 class PlaceList extends Component{
     render(){
@@ -16,7 +18,9 @@ class PlaceList extends Component{
         
         return(
             <div className = "placeList">
-                {renderPlaces}
+                <Card.Group itemsPerRow={3}>
+                    {renderPlaces}
+                </Card.Group>  
             </div>
         )
     }

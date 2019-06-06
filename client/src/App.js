@@ -35,6 +35,7 @@ class App extends Component {
     await this.setState(prevState => ({
       trips: [...prevState.trips,newPlace],
     }))
+
     // await this.setState({
     //   activeItem: newPlace
     // })
@@ -51,14 +52,15 @@ class App extends Component {
       <div>
         <Menu pointing secondary>
           <Menu.Item name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick} />
-          <Link to="/PlaceResult" >
-              <Menu.Item
-                name='Places'
+            
+          <Link to="/PlaceResult">
+          <Menu.Item 
+                name='Places' 
                 // active={activeItem === 'Places'}
                 // onClick={this.handleItemClick}
               />
-          </Link>
-          
+            </Link>
+              
           <Menu.Item
             name='Your Trips'
             // active={activeItem === 'Your Trips'}
@@ -84,33 +86,6 @@ class App extends Component {
             />}
           />
         </main>
-
-
-        <Card.Group itemsPerRow={3}>
-          <Card>
-            <Image src='/images/avatar/large/daniel.jpg' wrapped ui={false} />
-            <Card.Content>
-              {/* <div>{(this.state.apiDataLoaded) ? this.showPlacesOnPage() : <p>Loading...</p>}</div> */}
-              
-              <Card.Header>Daniel</Card.Header>
-              <Card.Meta>Joined in 2016</Card.Meta>
-              <Card.Description>
-                Daniel is a comedian living in Nashville.
-             </Card.Description>
-             </Card.Content>
-              <Card.Content extra>
-              <button>
-                  Add to my trip
-              </button>
-          </Card.Content>
-          </Card>
-          <Card raised image={src} />
-          <Card raised image={src} />
-          <Card raised image={src} />
-          <Card raised image={src} />
-          <Card raised image={src} />
-        </Card.Group>
-
       </div>
     );
   }

@@ -1,5 +1,4 @@
 class TripsController < ApplicationController
-
     # /users/:user_id/trips
 
     def index
@@ -14,7 +13,7 @@ class TripsController < ApplicationController
     end
 
     def create
-        @user = User.find(params[:user_id])
+        # @user = User.find(params[:user_id])
         @trip = Trip.new(trip_params)
         
         if @trip.save
@@ -46,7 +45,7 @@ class TripsController < ApplicationController
 
       private
       def trip_params
-        params.require(:trip).permit(:name, :category, :region, :user_id)
+        params.permit(:name, :category, :region, :user_id)
       end
 
 end

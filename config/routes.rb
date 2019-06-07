@@ -18,6 +18,10 @@ Rails.application.routes.draw do
 
   get "/places", to: "places#index"
 
+  resource :placestrips
+
+  # get "/placestrip", to:"placestrip#index"
+
   
 
 end

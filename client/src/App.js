@@ -20,6 +20,9 @@ class App extends Component {
       apiDataLoadedTrips: false,
 
       activeItem: 'home',
+      tripName: "",
+      tripCategory:"",
+      tripRegion: ""
     };
   }
 
@@ -35,9 +38,52 @@ class App extends Component {
     this.setState({ tripsData: trips.data, apiDataLoadedTrips: true });
   }
 
+  editTrip = (name, category, region) => {
+    console.log(name, category, region)
+    this.setState({
+      tripName: name,
+      tripCategory: category,
+      tripRegion: region
+    })
+  }
+
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
+  handleDelete = async(event, id) => {
+    console.log(this.props.id)
+    event.preventDefault()
 
+    await axios.delete(
+    `http://localhost:4567/users/1/trips/${id}`
+
+
+ )
+      this.rerenderStuff()
+ 
+}
+
+handleUpdate = async(event, id, data) => {
+  console.log(this.props.id)
+  event.preventDefault()
+
+  await axios.put(
+  `http://localhost:4567/users/1/trips/${id}`, data)
+
+
+
+
+    this.rerenderStuff()
+
+}
+rerenderStuff = async() => {
+  let getData = await axios.get(
+    `http://localhost:4567/users/1/trips/`       
+
+ )
+ this.setState({
+    tripsData: getData.data
+ })
+}
 
   handleItemClick1 = async(newPlace) => {
     console.log('this component is clicked')
@@ -47,6 +93,8 @@ class App extends Component {
     }))
 
     console.log(this.state.tripsData)
+    const ming = await axios.post('http://localhost:4567/placestrip')
+
   }
 
 
@@ -67,7 +115,7 @@ class App extends Component {
 
   render() {
     const { activeItem } = this.state
-
+    // console.log(this.state)
     return (
       <div>
         <Menu pointing secondary>
@@ -125,6 +173,10 @@ class App extends Component {
             render={()=><TripResult
               trips = {this.state.tripsData}
               onClick2={this.handleItemClick2}
+              onClick3={this.handleDelete}
+              render={this.rerenderStuff}
+              update={this.handleUpdate}
+              editTrip={this.editTrip}
             />}
           />
 

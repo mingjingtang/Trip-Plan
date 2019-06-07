@@ -92,6 +92,11 @@ class TripItem extends Component {
 
     
     render() {
+        console.log(this.props.id)
+        // console.log(this.props.onClickShowPlaces)
+
+
+        
         return (
             <div className="tripItem">
                 <div>
@@ -139,6 +144,10 @@ class TripItem extends Component {
                     </label>
                     <button type="submit" name="Edit">Edit</button>
                 </form>
+
+                <button 
+                    onClick={(e) => (this.props.onClickShowPlaces(e, this.props.id))}
+                >Show all the places</button>
 
                 <Divider />
             </div>

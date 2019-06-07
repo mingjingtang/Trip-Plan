@@ -42,8 +42,8 @@ class App extends Component {
     this.setState({ tripsData: trips.data, apiDataLoadedTrips: true });
 
     //get place under certain trip
-    const placeUnderTrips = await axios.get('http://localhost:4567/users/1/trips/1/places');
-    this.setState({placeUnderTrips: placeUnderTrips.data, apiDataLoadedPlacesUnderTrips: true })
+    // const placeUnderTrips = await axios.get('http://localhost:4567/users/1/trips/1/places');
+    // this.setState({placeUnderTrips: placeUnderTrips.data, apiDataLoadedPlacesUnderTrips: true })
   }
 
 
@@ -97,28 +97,26 @@ class App extends Component {
   }
   
 
-  //didn't work yet
+
   handleItemClick1 = async (id) => {
     console.log('this trip is clicked')
     console.log(id)
-    // console.log(newPlace)
-    // event.preventDefault()
-
-    // const data = {
-    //   "trip_id": tripId
-    // }
-
+  
     await axios.put(
       `http://localhost:4567/users/1/trips/1/places/${id}`)
     this.rerenderTrip1()
-
-    // await this.setState(prevState => ({
-    //   tripsData: [...prevState.tripsData, newPlace],
-    // }))
-    // console.log(this.state.tripsData)
     }
-  
 
+  onClickShowPlaces = async (id) => {
+      console.log('this button is clicked')
+      console.log(id)
+    
+      // const placeUnderTrips =await axios.get(
+      //   `http://localhost:4567/users/1/trips/${id}/places`)
+      // // this.rerenderTrip1()
+
+      // this.setState({placeUnderTrips: placeUnderTrips.data, apiDataLoadedPlacesUnderTrips: true })
+  }
 
 
 
@@ -197,6 +195,7 @@ class App extends Component {
               render={() => <TripResult
                 trips={this.state.tripsData}
                 placesUnderTrips={this.state.placeUnderTrips}
+                onClickShowPlaces={this.onClickShowPlaces}
                 onClick2={this.handleItemClick2}
                 render={this.rerenderStuff}
                 update={this.handleUpdate}

@@ -14,6 +14,7 @@ class TripList extends Component{
                 update = {this.props.update}
                 editTrip={this.props.editTrip}
                 placesUnderTrips={this.props.placesUnderTrips}
+                onClickShowPlaces={this.props.onClickShowPlaces}
 
                 key = {index}
                 id = {trip.id}

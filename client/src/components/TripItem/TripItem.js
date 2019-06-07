@@ -75,7 +75,22 @@ class TripItem extends Component {
         })
     }
 
+    newFunction = () => {
+        console.log(this.props.placesUnderTrips)
+         let renderPlacesUnderTrips = this.props.placesUnderTrips.map((place) => (
+            <div>
+                {/* <p>key = {index}</p> */}
+                <br></br>
+                <p>placeName : {place.name}</p>
+                <p>placeRegion : {place.region}</p>
+                <p>placeImage : {place.image}</p>
+                <br></br>
+            </div>           
+        ))
+        return renderPlacesUnderTrips
+    }
 
+    
     render() {
         return (
             <div className="tripItem">
@@ -87,7 +102,7 @@ class TripItem extends Component {
                     <br></br>
                 </div>
 
-
+                {this.props.placesUnderTrips && this.newFunction()}
 
                 <form onSubmit={this.handleAdd}>
                     <label>

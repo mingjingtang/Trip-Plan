@@ -7,16 +7,16 @@ import TripItem from '../TripItem/TripItem'
 
 class PlaceItem extends Component {
     render() {
-        const newTrip = {
-            id: this.props.id,
-            name: `${this.props.placeName}`,
-            region: `${this.props.placeRegion}`,
-            image: `${this.props.placeImage}`,
-            // trip_id: 1,
-            // user_id: 1
-            // isTrip: true
-            // place_id: this.props.id
-        }
+        // const newTrip = {
+        //     id: this.props.id,
+        //     name: `${this.props.placeName}`,
+        //     region: `${this.props.placeRegion}`,
+        //     image: `${this.props.placeImage}`,
+        //     // trip_id: 1,
+        //     // user_id: 1
+        //     // isTrip: true
+        //     // place_id: this.props.id
+        // }
 
         // console.log(this.props.trips)
         // console.log(this.props.id)
@@ -52,7 +52,7 @@ class PlaceItem extends Component {
                                     <p>
                                         <b>Relax</b>
                                     </p>
-                                    <Button>Add to trip</Button>
+                                    <Button >Add to trip</Button>
                                 </Grid.Column>
                             </Grid>
                         </Popup>

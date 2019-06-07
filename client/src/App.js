@@ -19,6 +19,9 @@ class App extends Component {
       tripsData: null,
       apiDataLoadedTrips: false,
 
+      placesUnderTripsData:null,
+      apiDataLoadedPlacesUnderTrips: false,
+
       activeItem: 'home',
 
       tripName: "",
@@ -37,6 +40,10 @@ class App extends Component {
     const trips = await axios.get('http://localhost:4567/users/1/trips');
     console.log(trips)
     this.setState({ tripsData: trips.data, apiDataLoadedTrips: true });
+
+    //get place under certain trip
+    const placeUnderTrips = await axios.get('http://localhost:4567/users/1/trips/1/places');
+    this.setState({placeUnderTrips: placeUnderTrips.data, apiDataLoadedPlacesUnderTrips: true })
   }
 
 
@@ -189,6 +196,7 @@ class App extends Component {
               path="/tripresult"
               render={() => <TripResult
                 trips={this.state.tripsData}
+                placesUnderTrips={this.state.placeUnderTrips}
                 onClick2={this.handleItemClick2}
                 render={this.rerenderStuff}
                 update={this.handleUpdate}

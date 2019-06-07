@@ -14,6 +14,7 @@ class TripResult extends Component{
                     render = {this.props.render}
                     update = {this.props.update}
                     editTrip={this.props.editTrip}
+                    placesUnderTrips={this.props.placesUnderTrips}
                 />
             </div>
         )

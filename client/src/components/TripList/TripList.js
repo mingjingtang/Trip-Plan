@@ -4,6 +4,8 @@ import '../TripResult/TripResult.css'
 
 class TripList extends Component{
     render(){
+        console.log(this.props.placesUnderTrips);
+
         let renderTrips = this.props.trips? this.props.trips.map((trip, index) => {
             return <TripItem  
                 onClick2 = {this.props.onClick2}
@@ -11,6 +13,7 @@ class TripList extends Component{
                 render = {this.props.render}
                 update = {this.props.update}
                 editTrip={this.props.editTrip}
+                placesUnderTrips={this.props.placesUnderTrips}
 
                 key = {index}
                 id = {trip.id}
@@ -19,6 +22,8 @@ class TripList extends Component{
                 tripRegion = {trip.region}
             />
         }) : null;
+
+
 
 
         return(

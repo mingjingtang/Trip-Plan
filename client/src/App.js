@@ -28,6 +28,8 @@ class App extends Component {
       tripCategory: "",
       tripRegion: ""
     };
+
+    this.onClickShowPlaces = this.onClickShowPlaces.bind(this)
   }
 
   componentDidMount = async () => {
@@ -107,9 +109,9 @@ class App extends Component {
     this.rerenderTrip1()
     }
 
-  onClickShowPlaces = async (id) => {
+  onClickShowPlaces = async (tripId) => {
       console.log('this button is clicked')
-      console.log(id)
+      console.log(tripId)
     
       // const placeUnderTrips =await axios.get(
       //   `http://localhost:4567/users/1/trips/${id}/places`)

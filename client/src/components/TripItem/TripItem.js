@@ -16,15 +16,11 @@ class TripItem extends Component {
         };
     }
 
-    handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
-    }
 
-    handleSubmit = async (event) => {
+    handleAdd = async (event) => {
         event.preventDefault();
-        event.target.edit && console.log('edit')
-        event.target.submit && console.log('submit')
-
+        // event.target.edit && console.log('edit')
+        // event.target.submit && console.log('Add')
 
         await axios.post(
             "http://localhost:4567/users/1/trips",
@@ -46,13 +42,16 @@ class TripItem extends Component {
         })
     }
 
-    updateName = (e) => {
-        console.log(e.target.value)
-        this.setState({
-            name: e.target.value
-        })
-    }
-    updateStuff = (e, name, category, region) => {
+
+    // updateName = (e) => {
+    //     console.log(e.target.value)
+    //     this.setState({
+    //         name: e.target.value
+    //     })
+    // }
+
+
+    updateTrip = (e, name, category, region) => {
         console.log(e.target.name)
 
 
@@ -90,7 +89,7 @@ class TripItem extends Component {
 
 
 
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleAdd}>
                     <label>
                         Name
                     </label>
@@ -106,24 +105,24 @@ class TripItem extends Component {
                     </label>
                     <input type="text" name="region" value={this.state.value} onChange={this.handleChange} />
                   
-                    <button type="submit" id="submit" name="submit">Add</button>
+                    <button type="submit" name="submit">Add</button>
 
                     <button className="button is-rounded"
-                    onClick={(e) => this.props.onClick3(e, this.props.id)} >
+                    onClick={(e) => this.props.handleDelete(e, this.props.id)} >
                     Delete
                 </button>
                 </form>
 
 
             
-                <form onSubmit={e => this.updateStuff(e, this.state.name, this.state.category, this.state.region)}>
+                <form onSubmit={e => this.updateTrip(e, this.state.name, this.state.category, this.state.region)}>
                     <label>
                         Name:
-                    <input type="text" name="name" value={this.state.name} onChange={this.updateName} />
+                    <input type="text" name="name" value={this.state.name} onChange={this.handleChange} />
                         <input type="text" name="category" value={this.state.category} onChange={this.handleChange} />
                         <input type="text" name="region" value={this.state.region} onChange={this.handleChange} />
                     </label>
-                    <button type="submit" id="submit" name="Edit">Edit</button>
+                    <button type="submit" name="Edit">Edit</button>
                 </form>
 
                 <Divider />

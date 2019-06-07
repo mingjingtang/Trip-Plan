@@ -20,6 +20,7 @@ class App extends Component {
       apiDataLoadedTrips: false,
 
       activeItem: 'home',
+
       tripName: "",
       tripCategory: "",
       tripRegion: ""
@@ -39,16 +40,6 @@ class App extends Component {
   }
 
 
-  editTrip = (name, category, region) => {
-    console.log(name, category, region)
-    this.setState({
-      tripName: name,
-      tripCategory: category,
-      tripRegion: region
-    })
-  }
-
-
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
 
@@ -60,10 +51,7 @@ class App extends Component {
       `http://localhost:4567/users/1/trips/${id}`
     )
     this.rerenderStuff()
-
   }
-
-
 
   handleUpdate = async (event, id, data) => {
     console.log(this.props.id)
@@ -72,18 +60,28 @@ class App extends Component {
     await axios.put(
       `http://localhost:4567/users/1/trips/${id}`, data)
     this.rerenderStuff()
-
   }
-  rerenderStuff = async () => {
-    let getData = await axios.get(
-      `http://localhost:4567/users/1/trips/`
 
-    )
+  editTrip = (name, category, region) => {
+    console.log(name, category, region)
     this.setState({
-      tripsData: getData.data
+      tripName: name,
+      tripCategory: category,
+      tripRegion: region
     })
   }
 
+  rerenderStuff = async () => {
+    let getTripData = await axios.get(
+      `http://localhost:4567/users/1/trips/`
+    )
+    this.setState({
+      tripsData: getTripData.data
+    })
+  }
+  
+
+  //didn't work yet
   handleItemClick1 = async (newPlace) => {
     console.log('this component is clicked')
 
@@ -93,10 +91,9 @@ class App extends Component {
 
     console.log(this.state.tripsData)
     const ming = await axios.post('http://localhost:4567/placestrip')
-
   }
 
-
+  //didn't work yet
   handleItemClick2 = async (id) => {
     console.log('this is the id i am going to delete ' + id)
     const { tripsData } = this.state
@@ -171,10 +168,10 @@ class App extends Component {
               render={() => <TripResult
                 trips={this.state.tripsData}
                 onClick2={this.handleItemClick2}
-                onClick3={this.handleDelete}
                 render={this.rerenderStuff}
                 update={this.handleUpdate}
                 editTrip={this.editTrip}
+                handleDelete={this.handleDelete}
               />}
             />
 

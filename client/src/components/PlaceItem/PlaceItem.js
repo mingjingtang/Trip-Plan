@@ -19,7 +19,7 @@ class PlaceItem extends Component {
         }
 
         // console.log(this.props.trips)
-        console.log(this.props.id)
+        // console.log(this.props.id)
         
         
         return (

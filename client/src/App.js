@@ -101,9 +101,9 @@ class App extends Component {
     //   "trip_id": tripId
     // }
 
-    // await axios.put(
-    //   `http://localhost:4567/places/${id}`, newPlace)
-    // this.rerenderTrip1()
+    await axios.put(
+      `http://localhost:4567/users/1/trips/1/places/${id}`)
+    this.rerenderTrip1()
 
     // await this.setState(prevState => ({
     //   tripsData: [...prevState.tripsData, newPlace],

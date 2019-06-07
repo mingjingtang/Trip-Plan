@@ -18,14 +18,12 @@ class PlacesController < ApplicationController
     end 
 
     def update
-        # @user = User.find(params[:user_id])
-        @place = Place.find(params[:id])
         
-        if @place.update(place_params)
-          render json: @place, status: :ok
-        else
-          render json: { errors: @place.errors }, status: :unprocessable_entity
-        end
+        @place = Place.find(params[:id])
+        @trip = Trip.find(params[:trip_id])
+        @trip.places.push(@place)
+
+        render json: @trip, status: :ok
     end
 
     private

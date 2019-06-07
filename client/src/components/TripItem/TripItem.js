@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import '../TripItem/TripItem.css';
 import { Button, Image, List } from 'semantic-ui-react'
 import axios from 'axios'
+import { Divider } from 'semantic-ui-react'
+import { Header } from 'semantic-ui-react'
+import { Form, TextArea } from 'semantic-ui-react'
 
 class TripItem extends Component {
     constructor(props) {
@@ -79,7 +82,7 @@ class TripItem extends Component {
             <div className="tripItem">
                 <div>
                     <br></br>
-                    <p>name: {this.props.tripName}</p>
+                    <Header as='h2'>{this.props.tripName}</Header>
                     <p>category: {this.props.tripCategory}</p>
                     <p>region: {this.props.tripRegion}</p>
                     <br></br>
@@ -122,6 +125,8 @@ class TripItem extends Component {
                     </label>
                     <button type="submit" id="submit" name="Edit">Edit</button>
                 </form>
+
+                <Divider />
             </div>
         )
     }

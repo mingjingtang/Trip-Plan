@@ -79,19 +79,36 @@ class App extends Component {
       tripsData: getTripData.data
     })
   }
+
+  rerenderTrip1 = async () =>{
+    let getTrip1Data = await axios.get(
+      `http://localhost:4567/users/1/trips/1`
+    )
+    this.setState({
+      tripsData: getTrip1Data.data
+    })
+  }
   
 
   //didn't work yet
-  handleItemClick1 = async (newPlace) => {
+  handleItemClick1 = async (id) => {
     console.log('this component is clicked')
+    console.log(id)
+    // event.preventDefault()
+    const data = {
+      "trip_id": 1
+    }
+    await axios.put(
+      `http://localhost:4567/places/${id}`, data)
+    this.rerenderTrip1()
 
-    await this.setState(prevState => ({
-      tripsData: [...prevState.tripsData, newPlace],
-    }))
-
-    console.log(this.state.tripsData)
-    const ming = await axios.post('http://localhost:4567/placestrip')
+    // await this.setState(prevState => ({
+    //   tripsData: [...prevState.tripsData, newPlace],
+    // }))
+    // console.log(this.state.tripsData)
   }
+
+
 
   //didn't work yet
   handleItemClick2 = async (id) => {

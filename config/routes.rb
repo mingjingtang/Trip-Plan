@@ -17,9 +17,9 @@ Rails.application.routes.draw do
   end
 
   get "/places", to: "places#index"
+  put "/places", to: "places#update"
 
-  resource :placestrips
-
+  # resource :placestrips
   # get "/placestrip", to:"placestrip#index"
 
   

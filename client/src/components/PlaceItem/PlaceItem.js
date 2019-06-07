@@ -8,6 +8,7 @@ import TripItem from '../TripItem/TripItem'
 class PlaceItem extends Component {
     render() {
         const newTrip = {
+            id: this.props.id,
             name: `${this.props.placeName}`,
             region: `${this.props.placeRegion}`,
             image: `${this.props.placeImage}`,
@@ -18,6 +19,7 @@ class PlaceItem extends Component {
         }
 
         // console.log(this.props.trips)
+        console.log(this.props.id)
         
         
         return (
@@ -41,7 +43,9 @@ class PlaceItem extends Component {
                                     <p>
                                         <b>Advanture</b>
                                     </p>
-                                    <Button onClick={(e) => (this.props.onClick1(this.props.id))} >Add to trip</Button>
+                                    <Button onClick={(e) => (
+                                        this.props.onClick1(this.props.id)
+                                    )} >Add to trip</Button>
                                 </Grid.Column>
                                 <Grid.Column textAlign='center'>
                                     <Header as='h4'>Road Trip</Header>

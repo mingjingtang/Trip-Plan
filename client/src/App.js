@@ -92,21 +92,26 @@ class App extends Component {
 
   //didn't work yet
   handleItemClick1 = async (id) => {
-    console.log('this component is clicked')
+    console.log('this trip is clicked')
     console.log(id)
+    // console.log(newPlace)
     // event.preventDefault()
-    const data = {
-      "trip_id": 1
-    }
-    await axios.put(
-      `http://localhost:4567/places/${id}`, data)
-    this.rerenderTrip1()
+
+    // const data = {
+    //   "trip_id": tripId
+    // }
+
+    // await axios.put(
+    //   `http://localhost:4567/places/${id}`, newPlace)
+    // this.rerenderTrip1()
 
     // await this.setState(prevState => ({
     //   tripsData: [...prevState.tripsData, newPlace],
     // }))
     // console.log(this.state.tripsData)
-  }
+    }
+  
+
 
 
 

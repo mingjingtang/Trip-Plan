@@ -9,6 +9,7 @@ class PlaceList extends Component{
                 onClick1 = {this.props.onClick1} 
                 trips = {this.props.trips}
                 key = {index}
+                id = {place.id}
                 placeImage = {place.image}
                 placeName = {place.name}
                 placeRegion = {place.region}

@@ -13,7 +13,7 @@ class PlaceItem extends Component {
             region: `${this.props.placeRegion}`,
             isTrip: true
         }
-        
+
         return (
             <div className="placeItem">
                 <Card>
@@ -26,25 +26,23 @@ class PlaceItem extends Component {
                         </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
-                        {/* <button onClick={(e) => (this.props.onClick1(newTrip))}>
-                            Add to my trip
-                        </button> */}
 
-                        <Popup trigger={<Button onClick={(e) => (this.props.onClick1(newTrip))}>Add to my trip</Button>} flowing hoverable>
+
+                        <Popup trigger={<Button>Add</Button>} flowing hoverable>
                             <Grid centered divided columns={3}>
                                 <Grid.Column textAlign='center'>
-                                    <Header as='h4'>trip1 place</Header>
+                                    <Header as='h4'>Summer Trip</Header>
                                     <p>
-                                        <b>trip1 detail</b> 
+                                        <b>Advanture</b>
                                     </p>
-                                    <Button >Choose</Button>
+                                    <Button >Add to trip</Button>
                                 </Grid.Column>
                                 <Grid.Column textAlign='center'>
-                                    <Header as='h4'>trip2 place</Header>
+                                    <Header as='h4'>Road Trip</Header>
                                     <p>
-                                        <b>trip2 detail</b> 
+                                        <b>Relax</b>
                                     </p>
-                                    <Button>Choose</Button>
+                                    <Button>Add to trip</Button>
                                 </Grid.Column>
                             </Grid>
                         </Popup>

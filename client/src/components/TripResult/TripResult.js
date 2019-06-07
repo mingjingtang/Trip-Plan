@@ -10,6 +10,10 @@ class TripResult extends Component{
                 <TripList 
                     trips = {this.props.trips}
                     onClick2 = {this.props.onClick2}
+                    onClick3 = {this.props.onClick3}
+                    render = {this.props.render}
+                    update = {this.props.update}
+                    editTrip={this.props.editTrip}
                 />
             </div>
         )

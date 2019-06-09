@@ -133,20 +133,27 @@ class App extends Component {
   }
 
 
+  // handleItemClick2 = async (id) => {
+  //   console.log('this is the id i am going to delete ' + id)
+  //   const { tripsData } = this.state
+  //   console.log('trip before splice' + this.state.tripsData)
+  //   tripsData.splice(id, 1);
+  //   console.log('trip after splice ' + this.state.tripsData)
 
-  //didn't work yet
-  handleItemClick2 = async (id) => {
-    console.log('this is the id i am going to delete ' + id)
-    const { tripsData } = this.state
-    console.log('trip before splice' + this.state.tripsData)
-    tripsData.splice(id, 1);
-    console.log('trip after splice ' + this.state.tripsData)
+  //   await this.setState(prevState => ({
+  //     favoriteBooks: this.state.tripsData.filter(b => {
+  //       return b.isTrip === true
+  //     })
+  //   }))
+  // }
 
-    await this.setState(prevState => ({
-      favoriteBooks: this.state.tripsData.filter(b => {
-        return b.isTrip === true
-      })
-    }))
+  handleDeletePlace = async (tripId, placeId) => {
+    console.log(tripId)
+    console.log(placeId)
+
+    await axios.delete(
+      `http://localhost:4567/users/1/trips/${tripId}/places/${placeId}`
+    )
   }
 
 
@@ -215,6 +222,7 @@ class App extends Component {
                 update={this.handleUpdate}
                 editTrip={this.editTrip}
                 handleDelete={this.handleDelete}
+                handleDeletePlace={this.handleDeletePlace}
               />}
             />
 

@@ -26,6 +26,13 @@ class PlacesController < ApplicationController
         render json: @trip, status: :ok
     end
 
+    def destroy
+        @Trip = Trip.find(params[:trip_id])
+        @place = Place.find(params[:id])
+        @place.destroy
+        head :no_content
+    end
+
     private
       def place_params
         params.permit(:name, :region, :image)

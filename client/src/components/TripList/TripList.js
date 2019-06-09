@@ -10,6 +10,7 @@ class TripList extends Component{
             return <TripItem  
                 onClick2 = {this.props.onClick2}
                 handleDelete = {this.props.handleDelete}
+                handleDeletePlace={this.props.handleDeletePlace}
                 render = {this.props.render}
                 update = {this.props.update}
                 editTrip={this.props.editTrip}

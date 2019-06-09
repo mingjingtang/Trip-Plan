@@ -90,10 +90,6 @@ class TripItem extends Component {
         return renderPlacesUnderTrips
     }
 
-    showFunction = ()=> {
-        this.props.onClickShowPlaces();
-    }
-
     
     render() {
         console.log(this.props.id)
@@ -147,7 +143,7 @@ class TripItem extends Component {
                 </form>
 
                 <button 
-                    onClick={(e) => (this.showFunction(e, this.props.id))}
+                    onClick={(e) => (this.props.onClickShowPlaces(this.props.id))}
                 >Show all the places</button>
 
                 <Divider />

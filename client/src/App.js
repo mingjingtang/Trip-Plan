@@ -19,7 +19,7 @@ class App extends Component {
       tripsData: [],
       apiDataLoadedTrips: false,
 
-      placesUnderTripsData:null,
+      placesUnderTripsData:[],
       apiDataLoadedPlacesUnderTrips: false,
 
       activeItem: 'home',
@@ -94,7 +94,7 @@ class App extends Component {
       `http://localhost:4567/users/1/trips/1`
     )
     this.setState({
-      tripsData: getTrip1Data.data
+      tripsData: getTrip1Data.data.conversations
     })
   }
   
@@ -109,15 +109,16 @@ class App extends Component {
     this.rerenderTrip1()
     }
 
+
   onClickShowPlaces = async (tripId) => {
       console.log('this button is clicked')
       console.log(tripId)
     
-      // const placeUnderTrips =await axios.get(
-      //   `http://localhost:4567/users/1/trips/${id}/places`)
-      // // this.rerenderTrip1()
+      const placeUnderTrips =await axios.get(
+        `http://localhost:4567/users/1/trips/${tripId}/places`)
+      // this.rerenderTrip1()
 
-      // this.setState({placeUnderTrips: placeUnderTrips.data, apiDataLoadedPlacesUnderTrips: true })
+      this.setState({placeUnderTrips: placeUnderTrips.data, apiDataLoadedPlacesUnderTrips: true })
   }
 
 

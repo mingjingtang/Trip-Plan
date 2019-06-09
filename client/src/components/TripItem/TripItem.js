@@ -75,8 +75,29 @@ class TripItem extends Component {
         })
     }
 
+    newFunction = () => {
+        console.log(this.props.placesUnderTrips)
+         let renderPlacesUnderTrips = this.props.placesUnderTrips.map((place) => (
+            <div>
+                {/* <p>key = {index}</p> */}
+                <br></br>
+                <p>placeName : {place.name}</p>
+                <p>placeRegion : {place.region}</p>
+                <p>placeImage : {place.image}</p>
+                <br></br>
+            </div>           
+        ))
+        return renderPlacesUnderTrips
+    }
 
+    showFunction = ()=> {
+        this.props.onClickShowPlaces();
+    }
+
+    
     render() {
+        console.log(this.props.id)
+       
         return (
             <div className="tripItem">
                 <div>
@@ -87,7 +108,7 @@ class TripItem extends Component {
                     <br></br>
                 </div>
 
-
+                {this.props.placesUnderTrips && this.newFunction()}
 
                 <form onSubmit={this.handleAdd}>
                     <label>
@@ -124,6 +145,10 @@ class TripItem extends Component {
                     </label>
                     <button type="submit" name="Edit">Edit</button>
                 </form>
+
+                <button 
+                    onClick={(e) => (this.showFunction(e, this.props.id))}
+                >Show all the places</button>
 
                 <Divider />
             </div>

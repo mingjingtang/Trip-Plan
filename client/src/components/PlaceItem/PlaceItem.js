@@ -27,7 +27,7 @@ class PlaceItem extends Component {
                 <Card>
                     <img src={this.props.placeImage} style={{ width: '20.8em', height: '12em' }} />
                     <Card.Content>
-                        <Card.Header>name: {this.props.placeName}</Card.Header>
+                        <Card.Header>{this.props.placeName}</Card.Header>
                         <Card.Meta>region: {this.props.placeRegion}</Card.Meta>
                         <Card.Description>
                             Card description that you can add.

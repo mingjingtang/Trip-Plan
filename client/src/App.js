@@ -17,6 +17,7 @@ class App extends Component {
       apiDataLoaded: false,
 
       tripsData: [],
+      trips2Data:[],
       apiDataLoadedTrips: false,
 
       placesUnderTripsData:[],
@@ -85,7 +86,7 @@ class App extends Component {
       `http://localhost:4567/users/1/trips/`
     )
     this.setState({
-      tripsData: getTripData.data.conversations
+      tripsData: getTripData.data
     })
   }
 
@@ -97,16 +98,15 @@ class App extends Component {
       tripsData: getTrip1Data.data.conversations
     })
   }
-
-  // rerenderTrip2 = async () =>{
-  //   let getTrip1Data = await axios.get(
-  //     `http://localhost:4567/users/1/trips/2`
-  //   )
-  //   this.setState({
-  //     tripsData: getTrip2Data.data.conversations
-  //   })
-  // }
   
+  rerenderTrip2 = async () =>{
+    let getTrip2Data = await axios.get(
+      `http://localhost:4567/users/1/trips/2`
+    )
+    this.setState({
+      trips2Data: getTrip2Data.data.conversations
+    })
+  }
 
 
   handleItemClick1 = async (tripId,placeId) => {
@@ -117,6 +117,7 @@ class App extends Component {
     await axios.put(
       `http://localhost:4567/users/1/trips/${tripId}/places/${placeId}`)
     this.rerenderTrip1()
+    this.rerenderTrip2()
     }
 
 

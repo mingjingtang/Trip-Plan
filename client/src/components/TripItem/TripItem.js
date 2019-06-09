@@ -80,9 +80,9 @@ class TripItem extends Component {
          let renderPlacesUnderTrips = this.props.placesUnderTrips.map((place) => (
             <div>
                 <br></br>
-                <p>placeName : {place.name}</p>
-                <p>placeRegion : {place.region}</p>
-                <p>placeImage : {place.image}</p>
+                <img src = {place.image} style={{ width: '20.8em', height: '12em' }}/>
+                <p>Name : {place.name}</p>
+                <p>Region : {place.region}</p>
                 <br></br>
             </div>           
         ))

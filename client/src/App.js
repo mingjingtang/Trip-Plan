@@ -13,10 +13,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      placesData: null,
+      placesData: [],
       apiDataLoaded: false,
 
-      tripsData: null,
+      tripsData: [],
       apiDataLoadedTrips: false,
 
       activeItem: 'home',

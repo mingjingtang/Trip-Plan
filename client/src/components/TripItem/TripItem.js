@@ -79,7 +79,6 @@ class TripItem extends Component {
         console.log(this.props.placesUnderTrips)
          let renderPlacesUnderTrips = this.props.placesUnderTrips.map((place) => (
             <div>
-                {/* <p>key = {index}</p> */}
                 <br></br>
                 <p>placeName : {place.name}</p>
                 <p>placeRegion : {place.region}</p>

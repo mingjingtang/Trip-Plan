@@ -85,7 +85,7 @@ class App extends Component {
       `http://localhost:4567/users/1/trips/`
     )
     this.setState({
-      tripsData: getTripData.data
+      tripsData: getTripData.data.conversations
     })
   }
 
@@ -97,15 +97,25 @@ class App extends Component {
       tripsData: getTrip1Data.data.conversations
     })
   }
+
+  // rerenderTrip2 = async () =>{
+  //   let getTrip1Data = await axios.get(
+  //     `http://localhost:4567/users/1/trips/2`
+  //   )
+  //   this.setState({
+  //     tripsData: getTrip2Data.data.conversations
+  //   })
+  // }
   
 
 
-  handleItemClick1 = async (id) => {
+  handleItemClick1 = async (tripId,placeId) => {
     console.log('this trip is clicked')
-    console.log(id)
-  
+    console.log("tripId is " + tripId)
+    console.log("placeId is " + placeId)
+    
     await axios.put(
-      `http://localhost:4567/users/1/trips/1/places/${id}`)
+      `http://localhost:4567/users/1/trips/${tripId}/places/${placeId}`)
     this.rerenderTrip1()
     }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PlaceList from '../PlaceList/PlaceList';
 import '../PlaceResult/PlaceResult.css';
-import TripResult from '../TripResult/TripResult';
+
 
 class PlaceResult extends Component{
     render(){

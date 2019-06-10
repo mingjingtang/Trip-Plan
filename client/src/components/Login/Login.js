@@ -5,7 +5,7 @@ import { Button, Checkbox, Form } from 'semantic-ui-react'
 class Login extends Component {
     render() {
         return (
-            <div>
+            <div className = "login">
                 <Form>
                     <Form.Field>
                         <label>First Name</label>

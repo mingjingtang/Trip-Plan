@@ -5,7 +5,10 @@ class Home extends Component{
     render(){
         return(
             <div className = "home">
-                <img src = "https://i.imgur.com/yKI4cOQ.png" alt=""/>
+                <div className = "image">
+                    <img src = "https://i.imgur.com/yKI4cOQ.png" alt=""/>
+                </div>
+                
             </div>
         )
     }

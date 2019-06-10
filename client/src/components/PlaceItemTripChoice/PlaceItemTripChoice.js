@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import '../PlaceItemTripChoice/PlaceItemTripChoice.css'
-import { Header, Button, Popup, Grid } from 'semantic-ui-react'
+import { Header, Button, Grid } from 'semantic-ui-react'
 
 
 class PlaceItemTripChoice extends Component {
     newFunction = () => {
          let renderTrips = this.props.trips.map((trip) => (
-            <div>
-                <Grid.Column textAlign='center'></Grid.Column>
-                    <Header as='h4'>{trip.name}</Header>
+            <div className = "choice">
+                <Grid.Column textAlign='center'> </Grid.Column>
+                    <Header as='h3'>{trip.name}</Header>
                     <p>
                         <b>category:{trip.category}</b>
                     </p>
@@ -22,6 +22,7 @@ class PlaceItemTripChoice extends Component {
                         })) } 
                         >Add to trip
                     </Button>
+                   
             </div>           
         ))
         return renderTrips

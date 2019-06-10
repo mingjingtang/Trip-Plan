@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../PlaceItem/PlaceItem.css'
-import { Card, Icon, Image } from 'semantic-ui-react'
-import { Header, Button, Popup, Grid } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
+import { Button, Popup, Grid } from 'semantic-ui-react'
 import PlaceItemTripChoice from '../PlaceItemTripChoice/PlaceItemTripChoice';
 
 class PlaceItem extends Component {

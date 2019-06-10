@@ -33,10 +33,15 @@ class PlacesController < ApplicationController
 
 
     def destroy
-        @Trip = Trip.find(params[:trip_id])
-        @place = Place.find(params[:id])
-        @place.destroy
-        head :no_content
+        if params[:user_id].present?
+            @Trip = Trip.find(params[:trip_id])
+            @place = Place.find(params[:id])
+            @place.destroy
+            head :no_content
+        else
+            @places = Place.all
+            render json: @places, status: :ok
+        end       
     end
 
 

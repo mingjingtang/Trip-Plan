@@ -4,7 +4,6 @@ import { Button, Image, List } from 'semantic-ui-react'
 import axios from 'axios'
 import { Divider } from 'semantic-ui-react'
 import { Header } from 'semantic-ui-react'
-import { Form, TextArea } from 'semantic-ui-react'
 import { Card } from 'semantic-ui-react'
 
 class TripItem extends Component {
@@ -129,7 +128,7 @@ class TripItem extends Component {
 
 
                 {this.props.placesUnderTrips && this.newFunction()}
-                
+
 
                 <Divider />
             </div>

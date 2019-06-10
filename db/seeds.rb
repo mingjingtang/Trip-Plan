@@ -68,10 +68,10 @@ place2 = Place.create({
 # })
 
 
-trip1.places << Place.find_by(name: "pocono")
+# trip1.places << Place.find_by(name: "pocono")
 # trip1.places << Place.find_by(name: "wilmington")
 # trip1.places << Place.find_by(name: "Hummelstown")
-trip2.places << Place.find_by(name: "orlando")
+# trip2.places << Place.find_by(name: "orlando")
 # trip2.places << Place.find_by(name: "miami")
 # trip2.places << Place.find_by(name: "Homestead")
 

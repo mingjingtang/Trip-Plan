@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Route, Link, Switch, Redirect } from 'react-router-dom';
+import { Route, Link, Switch} from 'react-router-dom';
 import PlaceResult from './components/PlaceResult/PlaceResult'
 import TripResult from './components/TripResult/TripResult'
 import Home from './components/Home/Home'
 import Login from './components/Login/Login'
 import axios from 'axios'
 import './App.css';
-import { Menu, Segment, Card, Icon, Image } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 
 
 class App extends Component {
@@ -17,7 +17,6 @@ class App extends Component {
       apiDataLoaded: false,
 
       tripsData: [],
-      trips2Data:[],
       apiDataLoadedTrips: false,
 
       placesUnderTripsData:[],
@@ -31,10 +30,6 @@ class App extends Component {
 
 
       allTrip: [],
-      // allTripPlace: []
-      // placeName: "",
-      // placeRegion: "",
-      // placeImage: ""
     };
 
     this.onClickShowPlaces = this.onClickShowPlaces.bind(this)
@@ -50,10 +45,6 @@ class App extends Component {
     const trips = await axios.get('http://localhost:4567/users/1/trips');
     console.log(trips)
     this.setState({ tripsData: trips.data, apiDataLoadedTrips: true });
-
-    //get place under certain trip
-    // const placeUnderTrips = await axios.get('http://localhost:4567/users/1/trips/1/places');
-    // this.setState({placeUnderTrips: placeUnderTrips.data, apiDataLoadedPlacesUnderTrips: true })
   }
 
 
@@ -97,23 +88,6 @@ class App extends Component {
     })
   }
 
-  // rerenderTrip1 = async () =>{
-  //   let getTrip1Data = await axios.get(
-  //     `http://localhost:4567/users/1/trips/1`
-  //   )
-  //   this.setState({
-  //     tripsData: getTrip1Data.data.conversations
-  //   })
-  // }
-  
-  // rerenderTrip2 = async () =>{
-  //   let getTrip2Data = await axios.get(
-  //     `http://localhost:4567/users/1/trips/2`
-  //   )
-  //   this.setState({
-  //     trips2Data: getTrip2Data.data.conversations
-  //   })
-  // }
 
   rerenderTrip = async (tripId) =>{
     let getTripData = await axios.get(
@@ -124,14 +98,6 @@ class App extends Component {
     }))
   }
 
-  // rerenderTripPlace = async (tripId, placeId) => {
-  //   let getTripPlaceData = await axios.get(
-  //     `http://localhost:4567/users/1/trips/${tripId}/places/${placeId}`
-  //   )
-  //   this.setState(prevState => ({
-  //     allTripPlace: [...prevState.allTripPlace, getTripPlaceData]
-  //   }))
-  // }
 
 
   onClickShowPlaces = async (tripId) => {

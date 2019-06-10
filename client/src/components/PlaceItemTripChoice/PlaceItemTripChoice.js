@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../PlaceItemTripChoice/PlaceItemTripChoice.css'
-import { Header, Button, Popup, Grid } from 'semantic-ui-react'
+import { Header, Button, Grid } from 'semantic-ui-react'
 
 
 class PlaceItemTripChoice extends Component {

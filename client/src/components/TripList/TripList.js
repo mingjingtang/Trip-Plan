@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TripItem from '../TripItem/TripItem'
 import '../TripResult/TripResult.css'
 import axios from 'axios'
-import { Form, TextArea } from 'semantic-ui-react'
+
 
 class TripList extends Component{
     constructor(props) {
@@ -17,7 +17,6 @@ class TripList extends Component{
 
     handleChange = (event) => {
         console.log(event.target.value)
-
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -25,7 +24,6 @@ class TripList extends Component{
 
     handleAdd = async (event) => {
         event.preventDefault();
-
         await axios.post(
             "http://localhost:4567/users/1/trips",
             {
@@ -35,7 +33,6 @@ class TripList extends Component{
                 user_id: 1
             }
         )
-
         this.props.render();
     }
 

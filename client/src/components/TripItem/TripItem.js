@@ -106,37 +106,11 @@ class TripItem extends Component {
                     <p>category: {this.props.tripCategory}</p>
                     <p>region: {this.props.tripRegion}</p>
                     <br></br>
-                </div>
-
-                {this.props.placesUnderTrips && this.newFunction()}
-
-                
-                <form onSubmit={this.handleAdd}>
-                    <label>
-                        Name
-                    </label>
-                    <input type="text" name="name" value={this.state.value} onChange={this.handleChange} />
-
-                    <label>
-                        category
-                    </label>
-                    <input type="text" name="category" value={this.state.value} onChange={this.handleChange} />
-
-                    <label>
-                        region
-                    </label>
-                    <input type="text" name="region" value={this.state.value} onChange={this.handleChange} />
-
-                    {/* <button type="submit" name="submit">
-                        Add
-                    </button> */}
-
                     <button className="button is-rounded"
                         onClick={(e) => this.props.handleDelete(e, this.props.id)} >
                         Delete
-                </button>
-                </form>
-
+                    </button>
+                </div>
 
 
                 <form onSubmit={e => this.updateTrip(e, this.state.name, this.state.category, this.state.region)}>
@@ -152,6 +126,10 @@ class TripItem extends Component {
                 <button
                     onClick={(e) => (this.props.onClickShowPlaces(this.props.id))}
                 >Show all the places</button>
+
+
+                {this.props.placesUnderTrips && this.newFunction()}
+                
 
                 <Divider />
             </div>

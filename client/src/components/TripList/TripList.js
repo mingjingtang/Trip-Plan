@@ -86,7 +86,11 @@ class TripList extends Component{
                     </button>
                 </form>
 
+
+
                 {renderTrips}
+
+
             </div>
         )
     }

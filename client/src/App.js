@@ -30,6 +30,8 @@ class App extends Component {
       tripRegion: "",
 
 
+      allTrip: [],
+      // allTripPlace: []
       // placeName: "",
       // placeRegion: "",
       // placeImage: ""
@@ -95,23 +97,42 @@ class App extends Component {
     })
   }
 
-  rerenderTrip1 = async () =>{
-    let getTrip1Data = await axios.get(
-      `http://localhost:4567/users/1/trips/1`
-    )
-    this.setState({
-      tripsData: getTrip1Data.data.conversations
-    })
-  }
+  // rerenderTrip1 = async () =>{
+  //   let getTrip1Data = await axios.get(
+  //     `http://localhost:4567/users/1/trips/1`
+  //   )
+  //   this.setState({
+  //     tripsData: getTrip1Data.data.conversations
+  //   })
+  // }
   
-  rerenderTrip2 = async () =>{
-    let getTrip2Data = await axios.get(
-      `http://localhost:4567/users/1/trips/2`
+  // rerenderTrip2 = async () =>{
+  //   let getTrip2Data = await axios.get(
+  //     `http://localhost:4567/users/1/trips/2`
+  //   )
+  //   this.setState({
+  //     trips2Data: getTrip2Data.data.conversations
+  //   })
+  // }
+
+  rerenderTrip = async (tripId) =>{
+    let getTripData = await axios.get(
+      `http://localhost:4567/users/1/trips/${tripId}/places`
     )
-    this.setState({
-      trips2Data: getTrip2Data.data.conversations
-    })
+    this.setState(prevState => ({
+      allTrip: [...prevState.allTrip, getTripData]
+    }))
   }
+
+  // rerenderTripPlace = async (tripId, placeId) => {
+  //   let getTripPlaceData = await axios.get(
+  //     `http://localhost:4567/users/1/trips/${tripId}/places/${placeId}`
+  //   )
+  //   this.setState(prevState => ({
+  //     allTripPlace: [...prevState.allTripPlace, getTripPlaceData]
+  //   }))
+  // }
+
 
   onClickShowPlaces = async (tripId) => {
       console.log('this button is clicked')
@@ -119,7 +140,8 @@ class App extends Component {
     
       const placeUnderTrips =await axios.get(
         `http://localhost:4567/users/1/trips/${tripId}/places`)
-      // this.rerenderTrip1()
+  
+      this.rerenderTrip(tripId)
 
       this.setState({placeUnderTrips: placeUnderTrips.data, apiDataLoadedPlacesUnderTrips: true })
   }
@@ -131,8 +153,8 @@ class App extends Component {
     
     await axios.post(
       `http://localhost:4567/users/1/trips/${tripId}/places`,newPlace)
-    this.rerenderTrip1()
-    this.rerenderTrip2()
+ 
+    this.rerenderTrip(tripId)
   }
 
 
@@ -144,6 +166,9 @@ class App extends Component {
     await axios.delete(
       `http://localhost:4567/users/1/trips/${tripId}/places/${placeId}`
     )
+
+    this.rerenderTrip(tripId)
+
   }
 
 

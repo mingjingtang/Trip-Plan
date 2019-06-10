@@ -86,7 +86,7 @@ class TripList extends Component {
                 </Form>
 
 
-
+                <Header as='h2' color = "green">All your trips</Header>
                 {renderTrips}
 
 

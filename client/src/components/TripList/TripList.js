@@ -3,7 +3,7 @@ import TripItem from '../TripItem/TripItem'
 import '../TripList/TripList.css'
 import axios from 'axios'
 import { Form, Input } from 'semantic-ui-react'
-import { Button } from 'semantic-ui-react'
+import { Button, Header } from 'semantic-ui-react'
 
 class TripList extends Component {
     constructor(props) {
@@ -63,6 +63,7 @@ class TripList extends Component {
 
         return (
             <div className="TripList">
+                <Header as='h2' color = "green">Create a new trip</Header>
                 <Form onSubmit={this.handleAdd}>
                     <Form.Group widths='equal'>
                         <Form.Field>

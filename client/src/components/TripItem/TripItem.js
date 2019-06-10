@@ -18,10 +18,17 @@ class TripItem extends Component {
     }
 
 
+    handleChange = (event) => {
+        console.log(event.target.value)
+
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+
     handleAdd = async (event) => {
         event.preventDefault();
-        // event.target.edit && console.log('edit')
-        // event.target.submit && console.log('Add')
 
         await axios.post(
             "http://localhost:4567/users/1/trips",
@@ -32,29 +39,14 @@ class TripItem extends Component {
                 user_id: 1
             }
         )
+
         this.props.render();
     }
 
 
-    handleChange = (event) => {
-        console.log(event.target.value)
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
-
-
-    // updateName = (e) => {
-    //     console.log(e.target.value)
-    //     this.setState({
-    //         name: e.target.value
-    //     })
-    // }
-
 
     updateTrip = (e, name, category, region) => {
         console.log(e.target.name)
-
 
         let data = {
             "name": this.state.name,
@@ -76,16 +68,12 @@ class TripItem extends Component {
         })
     }
 
+
+
     newFunction = () => {
         console.log(this.props.placesUnderTrips)
         let renderPlacesUnderTrips = this.props.placesUnderTrips.map((place) => (
             <div>
-                {/* <br></br>
-                <img src={place.image} style={{ width: '20.8em', height: '12em' }} />
-                <p>Name : {place.name}</p>
-                <p>Region : {place.region}</p>
-                <br></br> */}
-
                 <Card>
                     <Card.Content>
                         <Image floated='right' src={place.image} style={{ width: '20.8em', height: '12em' }} />
@@ -100,14 +88,13 @@ class TripItem extends Component {
                         </div>
                     </Card.Content>
                 </Card>
-
-
             </div>
         ))
         return renderPlacesUnderTrips
     }
 
 
+    
     render() {
         console.log(this.props.id)
 
@@ -123,6 +110,7 @@ class TripItem extends Component {
 
                 {this.props.placesUnderTrips && this.newFunction()}
 
+                
                 <form onSubmit={this.handleAdd}>
                     <label>
                         Name
@@ -139,7 +127,9 @@ class TripItem extends Component {
                     </label>
                     <input type="text" name="region" value={this.state.value} onChange={this.handleChange} />
 
-                    <button type="submit" name="submit">Add</button>
+                    {/* <button type="submit" name="submit">
+                        Add
+                    </button> */}
 
                     <button className="button is-rounded"
                         onClick={(e) => this.props.handleDelete(e, this.props.id)} >

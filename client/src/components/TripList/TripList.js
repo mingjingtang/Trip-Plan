@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import TripItem from '../TripItem/TripItem'
-import '../TripResult/TripResult.css'
+import '../TripList/TripList.css'
 import axios from 'axios'
+import { Form, Input } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
-
-class TripList extends Component{
+class TripList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -37,51 +38,51 @@ class TripList extends Component{
     }
 
 
-    render(){
+    render() {
         console.log(this.props.placesUnderTrips);
 
-        let renderTrips = this.props.trips? this.props.trips.map((trip, index) => {
-            return <TripItem  
-                onClick2 = {this.props.onClick2}
-                handleDelete = {this.props.handleDelete}
+        let renderTrips = this.props.trips ? this.props.trips.map((trip, index) => {
+            return <TripItem
+                onClick2={this.props.onClick2}
+                handleDelete={this.props.handleDelete}
                 handleDeletePlace={this.props.handleDeletePlace}
-                render = {this.props.render}
-                update = {this.props.update}
+                render={this.props.render}
+                update={this.props.update}
                 editTrip={this.props.editTrip}
                 placesUnderTrips={this.props.placesUnderTrips}
                 onClickShowPlaces={this.props.onClickShowPlaces}
 
-                key = {index}
-                id = {trip.id}
-                tripName = {trip.name}
-                tripCategory = {trip.category}
-                tripRegion = {trip.region}
+                key={index}
+                id={trip.id}
+                tripName={trip.name}
+                tripCategory={trip.category}
+                tripRegion={trip.region}
             />
         }) : null;
 
 
-        return(
-            <div className = "TripList">
-                <form onSubmit={this.handleAdd}>
-                    <label>
-                        Name
-                    </label>
-                    <input type="text" name="name" value={this.state.value} onChange={this.handleChange} />
-
-                    <label>
-                        category
-                    </label>
-                    <input type="text" name="category" value={this.state.value} onChange={this.handleChange} />
-
-                    <label>
-                        region
-                    </label>
-                    <input type="text" name="region" value={this.state.value} onChange={this.handleChange} />
-
-                    <button type="submit" name="submit">
-                        Add
-                    </button>
-                </form>
+        return (
+            <div className="TripList">
+                <Form onSubmit={this.handleAdd}>
+                    <Form.Group widths='equal'>
+                        <Form.Field>
+                            <label>Name</label>
+                            <Input fluid placeholder='name' type="text" name="name" value={this.state.value} onChange={this.handleChange}/>
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Category</label>
+                            <Input fluid placeholder='category' type="text" name="category" value={this.state.value} onChange={this.handleChange}/>
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Region</label>
+                            <Input fluid placeholder='region' type="text" name="region" value={this.state.value} onChange={this.handleChange} />
+                        </Form.Field>
+                       
+                             <Button primary type="submit" name="submit">Add</Button>
+                        
+                        
+                    </Form.Group>
+                </Form>
 
 
 

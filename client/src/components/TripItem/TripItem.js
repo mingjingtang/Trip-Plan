@@ -5,6 +5,8 @@ import axios from 'axios'
 import { Divider } from 'semantic-ui-react'
 import { Header } from 'semantic-ui-react'
 import { Card } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
+
 
 class TripItem extends Component {
     constructor(props) {
@@ -81,7 +83,7 @@ class TripItem extends Component {
                     </Card.Content>
                     <Card.Content extra>
                         <div className='ui two buttons'>
-                            <Button basic color='red' onClick={(e)=> this.props.handleDeletePlace(this.props.id, place.id)}>
+                            <Button basic color='red' onClick={(e) => this.props.handleDeletePlace(this.props.id, place.id)}>
                                 Delete From This Trip
                             </Button>
                         </div>
@@ -93,7 +95,7 @@ class TripItem extends Component {
     }
 
 
-    
+
     render() {
         console.log(this.props.id)
 
@@ -105,14 +107,10 @@ class TripItem extends Component {
                     <p>category: {this.props.tripCategory}</p>
                     <p>region: {this.props.tripRegion}</p>
                     <br></br>
-                    <button className="button is-rounded"
-                        onClick={(e) => this.props.handleDelete(e, this.props.id)} >
-                        Delete
-                    </button>
                 </div>
 
 
-                <form onSubmit={e => this.updateTrip(e, this.state.name, this.state.category, this.state.region)}>
+                {/* <form onSubmit={e => this.updateTrip(e, this.state.name, this.state.category, this.state.region)}>
                     <label>
                         Name:
                     <input type="text" name="name" value={this.state.name} onChange={this.handleChange} />
@@ -120,7 +118,47 @@ class TripItem extends Component {
                         <input type="text" name="region" value={this.state.region} onChange={this.handleChange} />
                     </label>
                     <button type="submit" name="Edit">Edit</button>
-                </form>
+                </form> */}
+
+                <Form onSubmit={e => this.updateTrip(e, this.state.name, this.state.category, this.state.region)}>
+                    <Form.Group widths='equal'>
+                        <Form.Input
+                            fluid
+                            id='form-subcomponent-shorthand-input-first-name'
+                            label='title'
+                            placeholder='title'
+                            type="text" name="name" value={this.state.name} onChange={this.handleChange}
+
+                        />
+                        <Form.Input
+                            fluid
+                            id='form-subcomponent-shorthand-input-last-name'
+                            label='category'
+                            placeholder='category'
+                            type="text" name="category" value={this.state.category} onChange={this.handleChange}
+                        />
+                        <Form.Input
+                            fluid
+                            id='form-subcomponent-shorthand-input-last-name'
+                            label='region'
+                            placeholder='region'
+                            type="text" name="region" value={this.state.region} onChange={this.handleChange}
+                        />
+                        {/* <button type="submit" name="Edit">Edit</button>
+                        <button className="button is-rounded"
+                            onClick={(e) => this.props.handleDelete(e, this.props.id)} >
+                            Delete
+                    </button> */}
+
+                        
+                        <Button basic color='yellow' color='orange' type="submit" name="Edit">
+                            Edit
+                        </Button>
+                        <Button basic color='red' onClick={(e) => this.props.handleDelete(e, this.props.id)} >
+                            Delete
+                         </Button>
+                    </Form.Group>
+                </Form>
 
                 <button
                     onClick={(e) => (this.props.onClickShowPlaces(this.props.id))}

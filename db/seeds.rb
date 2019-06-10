@@ -9,6 +9,7 @@
 User.destroy_all
 Trip.destroy_all
 Place.destroy_all
+Allplace.destroy_all
 
 user1 = User.create({
     name: "Mingjing",
@@ -67,10 +68,46 @@ place6 = Place.create({
 })
 
 
-
 trip1.places << Place.find_by(name: "pocono")
 trip1.places << Place.find_by(name: "wilmington")
 # trip1.places << Place.find_by(name: "Hummelstown")
 trip2.places << Place.find_by(name: "orlando")
 trip2.places << Place.find_by(name: "miami")
 # trip2.places << Place.find_by(name: "Homestead")
+
+
+allplace1 = Allplace.create({
+    name: "pocono",
+    region: "Pennsylvania",
+    image: "https://i.imgur.com/54sIqnZ.jpg",
+})
+
+allplace2 = Allplace.create({
+    name: "orlando",
+    region: "Florida",
+    image: "https://i.imgur.com/uU405eP.jpg",
+})
+
+allplace3 = Allplace.create({
+    name: "miami",
+    region: "Florida",
+    image: "https://i.imgur.com/p58SMMT.jpg",
+})
+
+allplace4 = Allplace.create({
+    name: "wilmington",
+    region: "Pennsylvania",
+    image: "https://i.imgur.com/w4TMP39.jpg",
+})
+
+allplace5 = Allplace.create({
+    name: "Homestead",
+    region: "Florida",
+    image: "https://i.imgur.com/wHe9Z9E.jpg",
+})
+
+allplace6 = Allplace.create({
+    name: "Hummelstown",
+    region: "Pennsylvania",
+    image: "https://i.imgur.com/YElcx6V.jpg",
+})

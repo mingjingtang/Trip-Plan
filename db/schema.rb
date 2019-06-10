@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_06_230007) do
+ActiveRecord::Schema.define(version: 2019_06_10_001135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "allplaces", force: :cascade do |t|
+    t.string "name"
+    t.string "region"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "places", force: :cascade do |t|
     t.string "name"
@@ -25,11 +33,11 @@ ActiveRecord::Schema.define(version: 2019_06_06_230007) do
 
   create_table "places_trips", force: :cascade do |t|
     t.bigint "trip_id"
-    t.index ["trip_id"], name: "index_places_trips_on_trip_id"
     t.bigint "place_id"
-    t.index ["place_id"], name: "index_places_trips_on_place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_places_trips_on_place_id"
+    t.index ["trip_id"], name: "index_places_trips_on_trip_id"
   end
 
   create_table "trips", force: :cascade do |t|
@@ -50,5 +58,7 @@ ActiveRecord::Schema.define(version: 2019_06_06_230007) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "places_trips", "places"
+  add_foreign_key "places_trips", "trips"
   add_foreign_key "trips", "users"
 end

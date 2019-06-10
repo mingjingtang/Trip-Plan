@@ -20,7 +20,13 @@ class PlaceItem extends Component {
                         <Popup trigger={<Button>Add</Button>} flowing hoverable>
                             <Grid centered divided columns={3}>
                                
-                                <PlaceItemTripChoice trips = {this.props.trips} onClick1 = {this.props.onClick1} placeId = {this.props.id} />
+                                <PlaceItemTripChoice 
+                                    trips = {this.props.trips} 
+                                    onClick1 = {this.props.onClick1} 
+                                    placeName = {this.props.placeName}
+                                    placeRegion = {this.props.placeRegion}
+                                    placeImage = {this.props.placeImage}
+                                 />
                                 
                             </Grid>
                         </Popup>

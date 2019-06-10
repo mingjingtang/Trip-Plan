@@ -27,7 +27,12 @@ class App extends Component {
 
       tripName: "",
       tripCategory: "",
-      tripRegion: ""
+      tripRegion: "",
+
+
+      // placeName: "",
+      // placeRegion: "",
+      // placeImage: ""
     };
 
     this.onClickShowPlaces = this.onClickShowPlaces.bind(this)
@@ -35,7 +40,7 @@ class App extends Component {
 
   componentDidMount = async () => {
     //get places data
-    const places = await axios.get('http://localhost:4567/places');
+    const places = await axios.get('http://localhost:4567/allplaces');
     console.log(places)
     this.setState({ placesData: places.data, apiDataLoaded: true });
 
@@ -108,19 +113,6 @@ class App extends Component {
     })
   }
 
-
-  handleItemClick1 = async (tripId,placeId) => {
-    console.log('this trip is clicked')
-    console.log("tripId is " + tripId)
-    console.log("placeId is " + placeId)
-    
-    await axios.put(
-      `http://localhost:4567/users/1/trips/${tripId}/places/${placeId}`)
-    this.rerenderTrip1()
-    this.rerenderTrip2()
-    }
-
-
   onClickShowPlaces = async (tripId) => {
       console.log('this button is clicked')
       console.log(tripId)
@@ -132,20 +124,18 @@ class App extends Component {
       this.setState({placeUnderTrips: placeUnderTrips.data, apiDataLoadedPlacesUnderTrips: true })
   }
 
+  handleItemClick1 = async (tripId,newPlace) => {
+    console.log('this trip is clicked')
+    console.log("tripId is " + tripId)
+    console.log("newPlace is " + newPlace)
+    
+    await axios.post(
+      `http://localhost:4567/users/1/trips/${tripId}/places`,newPlace)
+    this.rerenderTrip1()
+    this.rerenderTrip2()
+  }
 
-  // handleItemClick2 = async (id) => {
-  //   console.log('this is the id i am going to delete ' + id)
-  //   const { tripsData } = this.state
-  //   console.log('trip before splice' + this.state.tripsData)
-  //   tripsData.splice(id, 1);
-  //   console.log('trip after splice ' + this.state.tripsData)
 
-  //   await this.setState(prevState => ({
-  //     favoriteBooks: this.state.tripsData.filter(b => {
-  //       return b.isTrip === true
-  //     })
-  //   }))
-  // }
 
   handleDeletePlace = async (tripId, placeId) => {
     console.log(tripId)

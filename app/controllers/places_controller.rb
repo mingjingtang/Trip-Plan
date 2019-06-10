@@ -1,15 +1,10 @@
 class PlacesController < ApplicationController
     def index
-        if params[:user_id].present?
-            @user = User.find(params[:user_id])
-            @trips = @user.trips
-            @trip = Trip.find(params[:trip_id])
-            @places = @trip.places
-            render json: @places, status: :ok
-        else
-            @places = Place.all
-            render json: @places, status: :ok
-        end    
+        @user = User.find(params[:user_id])
+        @trips = @user.trips
+        @trip = Trip.find(params[:trip_id])
+        @places = @trip.places
+        render json: @places, status: :ok
     end
     
     def show
@@ -17,14 +12,25 @@ class PlacesController < ApplicationController
         render json: @place, status: :ok
     end 
 
-    def update
-        
-        @place = Place.find(params[:id])
-        @trip = Trip.find(params[:trip_id])
-        @trip.places.push(@place)
+    # def update
+    #     @place = Place.find(params[:id])
+    #     @trip = Trip.find(params[:trip_id])
+    #     @trip.places.push(@place)
+    #     render json: @trip, status: :ok
+    # end
 
-        render json: @trip, status: :ok
+    def create
+        @trip = Trip.find(params[:trip_id])
+        @place = Place.new(place_params)
+        
+        if @place.save
+          @trip.places.push(@place)
+          render json: @place, status: :created
+        else
+          render json: { errors: @place.errors }, status: :unprocessable_entity
+        end
     end
+
 
     def destroy
         @Trip = Trip.find(params[:trip_id])
@@ -32,6 +38,7 @@ class PlacesController < ApplicationController
         @place.destroy
         head :no_content
     end
+
 
     private
       def place_params

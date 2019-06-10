@@ -1,0 +1,2 @@
+class Allplace < ApplicationRecord
+end

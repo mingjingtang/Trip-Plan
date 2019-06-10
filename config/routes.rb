@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   # resource :restaurant
 
   root to: 'root#index'
-  # resources :places, only: [:index]
-  # resources :trips
   resources :users
 
   scope '/users/:user_id' do
@@ -16,11 +14,9 @@ Rails.application.routes.draw do
     resources :places
   end
 
-  get "/places", to: "places#index"
-  # put "/places", to: "places#update"
+  resources :allplaces
 
-  # resource :placestrips
-  # get "/placestrip", to:"placestrip#index"
+
 
   
 

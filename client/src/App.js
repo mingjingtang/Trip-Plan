@@ -13,13 +13,14 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      placesData: null,
+      placesData: [],
       apiDataLoaded: false,
 
-      tripsData: null,
+      tripsData: [],
+      trips2Data:[],
       apiDataLoadedTrips: false,
 
-      placesUnderTripsData:null,
+      placesUnderTripsData:[],
       apiDataLoadedPlacesUnderTrips: false,
 
       activeItem: 'home',
@@ -94,47 +95,65 @@ class App extends Component {
       `http://localhost:4567/users/1/trips/1`
     )
     this.setState({
-      tripsData: getTrip1Data.data
+      tripsData: getTrip1Data.data.conversations
     })
   }
   
+  rerenderTrip2 = async () =>{
+    let getTrip2Data = await axios.get(
+      `http://localhost:4567/users/1/trips/2`
+    )
+    this.setState({
+      trips2Data: getTrip2Data.data.conversations
+    })
+  }
 
 
-  handleItemClick1 = async (id) => {
+  handleItemClick1 = async (tripId,placeId) => {
     console.log('this trip is clicked')
-    console.log(id)
-  
+    console.log("tripId is " + tripId)
+    console.log("placeId is " + placeId)
+    
     await axios.put(
-      `http://localhost:4567/users/1/trips/1/places/${id}`)
+      `http://localhost:4567/users/1/trips/${tripId}/places/${placeId}`)
     this.rerenderTrip1()
+    this.rerenderTrip2()
     }
+
 
   onClickShowPlaces = async (tripId) => {
       console.log('this button is clicked')
       console.log(tripId)
     
-      // const placeUnderTrips =await axios.get(
-      //   `http://localhost:4567/users/1/trips/${id}/places`)
-      // // this.rerenderTrip1()
+      const placeUnderTrips =await axios.get(
+        `http://localhost:4567/users/1/trips/${tripId}/places`)
+      // this.rerenderTrip1()
 
-      // this.setState({placeUnderTrips: placeUnderTrips.data, apiDataLoadedPlacesUnderTrips: true })
+      this.setState({placeUnderTrips: placeUnderTrips.data, apiDataLoadedPlacesUnderTrips: true })
   }
 
 
+  // handleItemClick2 = async (id) => {
+  //   console.log('this is the id i am going to delete ' + id)
+  //   const { tripsData } = this.state
+  //   console.log('trip before splice' + this.state.tripsData)
+  //   tripsData.splice(id, 1);
+  //   console.log('trip after splice ' + this.state.tripsData)
 
-  //didn't work yet
-  handleItemClick2 = async (id) => {
-    console.log('this is the id i am going to delete ' + id)
-    const { tripsData } = this.state
-    console.log('trip before splice' + this.state.tripsData)
-    tripsData.splice(id, 1);
-    console.log('trip after splice ' + this.state.tripsData)
+  //   await this.setState(prevState => ({
+  //     favoriteBooks: this.state.tripsData.filter(b => {
+  //       return b.isTrip === true
+  //     })
+  //   }))
+  // }
 
-    await this.setState(prevState => ({
-      favoriteBooks: this.state.tripsData.filter(b => {
-        return b.isTrip === true
-      })
-    }))
+  handleDeletePlace = async (tripId, placeId) => {
+    console.log(tripId)
+    console.log(placeId)
+
+    await axios.delete(
+      `http://localhost:4567/users/1/trips/${tripId}/places/${placeId}`
+    )
   }
 
 
@@ -203,6 +222,7 @@ class App extends Component {
                 update={this.handleUpdate}
                 editTrip={this.editTrip}
                 handleDelete={this.handleDelete}
+                handleDeletePlace={this.handleDeletePlace}
               />}
             />
 

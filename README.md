@@ -54,10 +54,14 @@ MVP/PostMVP
 <img width="600" alt="Screen Shot 2019-06-03 at 4 52 03 PM" src="https://user-images.githubusercontent.com/10451577/58833844-fdb33880-861f-11e9-9ca1-476df5d9fd07.png">
                     
 
-<h2>Helper Functions</h2>
+<h2>Direction run app</h2>
 <ul>
-<li>Array.pop( )</li>
-<li>Array.push( )</li>
+<li>npm i  - both client and backend</li>
+<li>bundle install - client</li>
+<li>rails db:reset - client</li>
+<li>install and uninstall psql - backend </li>
+<li>rails s -p 4567 - backend</li>
+<li>npm start - client</li>
 </ul>
 
 
